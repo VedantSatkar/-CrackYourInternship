@@ -1,0 +1,34 @@
+'''
+class Node:
+    def __init__(self,x):
+        self.data=x
+        self.next=None
+
+'''
+class Solution:
+    def compute(self,head):
+        '''l=[]
+        while head:
+            l.append(head.data)
+            head=head.next
+        i=0
+        j=i+1
+        k=[]
+        dummy=Node()
+        temp=dummy
+        while j<len(l):
+            if l[i]<l[j]:
+                dummy=Node(l[j])
+            i=i+1
+            j=j+1
+            dummy=dummy.next
+        return temp.next'''
+        p=head
+        while p.next:
+            if p.data<p.next.data:
+                p.data=p.next.data
+                p.next=p.next.next
+                p=head
+            else:
+                p=p.next
+        return head
