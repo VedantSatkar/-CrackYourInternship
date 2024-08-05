@@ -1,0 +1,43 @@
+// User function Template for Java
+
+class Solution {
+    // Function to find if there is a celebrity in the party or not.
+    public int celebrity(int mat[][]) {
+        int n = mat.length;  // Determine the size of the matrix
+        Stack<Integer> st = new Stack<>();
+        
+        // Push all people to the stack
+        for (int i = 0; i < n; i++) {
+            st.push(i);
+        }
+        
+        // Determine potential celebrity
+        while (st.size() > 1) {
+            int v1 = st.pop();
+            int v2 = st.pop();
+            if (mat[v1][v2] == 0) {
+                // v1 could be the celebrity, v2 cannot
+                st.push(v1);
+            } else {
+                // v2 could be the celebrity, v1 cannot
+                st.push(v2);
+            }
+        }
+        
+        // If no potential celebrity, return -1
+        if (st.size()==0) {
+            return -1;
+        }
+        
+        int potential = st.pop();
+        
+        // Verify the potential celebrity
+        for (int i = 0; i < n; i++) {
+            if (i != potential && (mat[potential][i] == 1 || mat[i][potential] == 0)) {
+                return -1;
+            }
+        }
+        
+        return potential;
+    }
+}
